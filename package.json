@@ -9,6 +9,7 @@
   "scripts": {
     "server": "node apiserver/server.js",
     "build": "rimraf ./dist/** && webpack --config webpack.conf.js",
+    "dev": "webpack --config webpack.conf.js --watch",
     "test": "jest"
   },
   "dependencies": {},

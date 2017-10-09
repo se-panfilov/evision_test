@@ -1,6 +1,6 @@
 import {getData} from './fetch'
+import {ENDPOINTS} from '../config/config'
 
-export function getBalance () {
-  getData()
-  console.log(1)
+export async function getBalance () {
+  return await getData(ENDPOINTS.balance)
 }
