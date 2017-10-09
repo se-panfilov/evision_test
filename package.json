@@ -1,17 +1,27 @@
 {
   "name": "evision_test",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.html",
   "repository": "git@github.com:se-panfilov/evision_test.git",
   "author": "Sergei <se-panfilov@ya.ru>",
   "license": "MIT",
   "private": false,
   "scripts": {
     "server": "node apiserver/server.js",
+    "build": "rimraf ./dist/** && webpack --config webpack.conf.js",
     "test": "jest"
   },
   "dependencies": {
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.8.0",
-    "jest": "^21.2.1"
+    "jest": "^21.2.1",
+    "rimraf": "^2.6.2",
+    "webpack": "^3.6.0",
+    "html-webpack-plugin": "^2.30.1"
   }
 }
