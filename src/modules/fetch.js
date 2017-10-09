@@ -26,7 +26,7 @@ function onError (response) {
 
 export function getData (entityStr) {
   return fetch(`${URL}/${entityStr}`).then(response => {
-    if (!response.ok) return this.onError(response)
+    if (!response.ok) return onError(response)
 
     return response.json()
   })
@@ -34,7 +34,7 @@ export function getData (entityStr) {
 
 export function addData (url) {
   return fetch(`${URL}/${entityStr}/add`).then(response => {
-    if (!response.ok) return this.onError(response)
+    if (!response.ok) return onError(response)
 
     return response.json()
   })

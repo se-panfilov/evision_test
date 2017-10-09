@@ -1,5 +1,5 @@
-import {setHTML, createElem, clearHTML} from './modules/dom'
-import {getNotificationsBox} from './modules/elements'
+import {setHTML, createElem, clearHTML} from './dom'
+import {getNotificationsBox} from './elements'
 
 const container = getNotificationsBox()
 

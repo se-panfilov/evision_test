@@ -1,11 +1,11 @@
-import {getElement} from './modules/dom'
+import {getElement} from './dom'
 
 const messages = {
   elemNotFound: 'No such element',
   noId: 'Id must be specified'
 }
 
-const notificationsBoxId = ''
+const notificationsBoxId = 'notifications-box'
 
 function getElem (id) {
   if (!id) throw new Error(messages.noId)

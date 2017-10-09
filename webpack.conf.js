@@ -4,7 +4,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist')
@@ -37,7 +37,7 @@ module.exports = {
     new ExtractTextPlugin(`css/app.css`),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: 'src/index.html',
       inject: true
     }),
     new FriendlyErrorsWebpackPlugin()
