@@ -1,4 +1,4 @@
-import getBalance from './modules/balance'
+import {getBalance} from './modules/balance'
 
 const balance = getBalance()
 

@@ -72,11 +72,7 @@
 
 var _balance = __webpack_require__(1);
 
-var _balance2 = _interopRequireDefault(_balance);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var balance = (0, _balance2.default)();
+var balance = (0, _balance.getBalance)();
 
 console.info(balance);
 
@@ -91,7 +87,41 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getBalance = getBalance;
-function getBalance() {}
+
+var _fetch = __webpack_require__(2);
+
+function getBalance() {
+  (0, _fetch.getData)();
+  console.log(1);
+}
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getData = getData;
+exports.updateData = updateData;
+
+var _config = __webpack_require__(3);
+
+function getData(url) {
+  console.info(_config.URL);
+  console.info(2);
+}
+
+function updateData(url) {}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = {"URL":"http://localhost:8080/api/"}
 
 /***/ })
 /******/ ]);
