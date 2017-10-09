@@ -72,6 +72,8 @@
 
 var _balance = __webpack_require__(1);
 
+__webpack_require__(4);
+
 var balance = (0, _balance.getBalance)();
 
 console.info(balance);
@@ -122,6 +124,12 @@ function updateData(url) {}
 /***/ (function(module, exports) {
 
 module.exports = {"URL":"http://localhost:8080/api/"}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
