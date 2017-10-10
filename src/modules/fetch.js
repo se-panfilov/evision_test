@@ -24,8 +24,8 @@ function onError (response) {
   }
 }
 
-export function getData (entityStr) {
-  return fetch(`${URL}/${entityStr}`).then(response => {
+export async function getData (entityStr) {
+  return await fetch(`${URL}/${entityStr}`).then(response => {
     if (!response.ok) return onError(response)
 
     return response.json()

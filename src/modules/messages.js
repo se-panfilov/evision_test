@@ -3,8 +3,8 @@ import {getNotificationsBox} from './elements'
 
 const container = getNotificationsBox()
 
-export function showMessage (message, typeClass = '-error', elemType = 'div') {
-  const msgHtml = createElem(elemType, `messages__notification-item ${typeClass}`, message)
+export function showMessage (message, typeClass = 'error', elemType = 'div') {
+  const msgHtml = createElem(elemType, `notification-box___item -${typeClass}`, message)
   setHTML(container, msgHtml)
 }
 

@@ -3706,13 +3706,45 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getData = getData;
+exports.getData = undefined;
+
+var getData = exports.getData = function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(entityStr) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch(_config.URL + '/' + entityStr).then(function (response) {
+              if (!response.ok) return onError(response);
+
+              return response.json();
+            });
+
+          case 2:
+            return _context.abrupt('return', _context.sent);
+
+          case 3:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  return function getData(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
 exports.addData = addData;
 exports.setErrorOutput = setErrorOutput;
 
 var _config = __webpack_require__(125);
 
 var _constants = __webpack_require__(332);
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var showErrorCustomFn = undefined;
 
@@ -3735,14 +3767,6 @@ function onError(response) {
     default:
       return showError('Unknown error');
   }
-}
-
-function getData(entityStr) {
-  return fetch(_config.URL + '/' + entityStr).then(function (response) {
-    if (!response.ok) return onError(response);
-
-    return response.json();
-  });
 }
 
 function addData(url) {
@@ -9148,11 +9172,11 @@ __webpack_require__(335);
 
 (0, _fetch.setErrorOutput)(_messages.blinkMessage);
 
-var balance = (0, _balance.getBalance)();
-
-console.info(111);
-console.info(balance);
-console.info(111);
+(0, _balance.getBalance)().then(function (v) {
+  console.info(111);
+  console.info(v);
+  console.info(111);
+});
 
 /***/ }),
 /* 331 */
@@ -9224,10 +9248,10 @@ var _elements = __webpack_require__(334);
 var container = (0, _elements.getNotificationsBox)();
 
 function showMessage(message) {
-  var typeClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-error';
+  var typeClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'error';
   var elemType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'div';
 
-  var msgHtml = (0, _dom.createElem)(elemType, 'messages__notification-item ' + typeClass, message);
+  var msgHtml = (0, _dom.createElem)(elemType, 'notification-box___item -' + typeClass, message);
   (0, _dom.setHTML)(container, msgHtml);
 }
 

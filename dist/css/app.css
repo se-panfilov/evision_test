@@ -1,3 +1,46 @@
-.some {
-  color: #f00;
+body {
+  background-color: #2b2b2b;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  background-color: #313336;
+  margin: 0 36px;
+}
+.notifications-box {
+  position: fixed;
+  left: 0;
+  height: 35px;
+  width: 100%;
+}
+.notification-box___item {
+  float: right;
+  width: 200px;
+  height: 28px;
+  text-align: left;
+  border: 1px solid;
+  padding: 3px;
+}
+.notification-box___item.-error {
+  background-color: #e37763;
+  border-color: #d06d5b;
+}
+.account-manage__buttons {
+  border: 1ps solid #f00;
+}
+.account-info {
+  padding-top: 35px;
+}
+.account-buttons__btn {
+  background-color: #3c3e41;
+  padding: 5px 10px;
+  border: 1px solid #adadad;
+  color: #adadad;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.account-buttons__btn:hover,
+.account-buttons__btn:active,
+.account-buttons__btn:focus {
+  background-color: #414346;
 }

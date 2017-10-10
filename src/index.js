@@ -5,9 +5,9 @@ import './styles.styl'
 
 setErrorOutput(blinkMessage)
 
-const balance = getBalance()
-
-console.info(111)
-console.info(balance)
-console.info(111)
+getBalance().then(v => {
+  console.info(111)
+  console.info(v)
+  console.info(111)
+})
 
