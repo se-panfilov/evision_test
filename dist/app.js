@@ -3714,17 +3714,13 @@ var getData = exports.getData = function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
-            return fetch(_config.URL + '/' + entityStr).then(function (response) {
+            return _context.abrupt('return', fetch(_config.URL + '/' + entityStr).then(function (response) {
               if (!response.ok) return onError(response);
 
               return response.json();
-            });
+            }));
 
-          case 2:
-            return _context.abrupt('return', _context.sent);
-
-          case 3:
+          case 1:
           case 'end':
             return _context.stop();
         }
@@ -3737,7 +3733,14 @@ var getData = exports.getData = function () {
   };
 }();
 
-exports.addData = addData;
+// export function addData (entityStr) {
+//   return fetch(`${URL}/${entityStr}/add`).then(response => {
+//     if (!response.ok) return onError(response)
+//
+//     return response.json()
+//   })
+// }
+
 exports.setErrorOutput = setErrorOutput;
 
 var _config = __webpack_require__(125);
@@ -3746,7 +3749,7 @@ var _constants = __webpack_require__(332);
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var showErrorCustomFn = undefined;
+var showErrorCustomFn = void 0;
 
 function showError(message) {
   return showErrorCustomFn ? showErrorCustomFn(message) : console.error(message);
@@ -3767,14 +3770,6 @@ function onError(response) {
     default:
       return showError('Unknown error');
   }
-}
-
-function addData(url) {
-  return fetch(_config.URL + '/' + entityStr + '/add').then(function (response) {
-    if (!response.ok) return onError(response);
-
-    return response.json();
-  });
 }
 
 function setErrorOutput(fn) {
@@ -9207,13 +9202,9 @@ var getAccountData = exports.getAccountData = function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
-            return (0, _fetch.getData)(_config.ENDPOINTS.BALANCE);
+            return _context.abrupt('return', (0, _fetch.getData)(_config.ENDPOINTS.BALANCE));
 
-          case 2:
-            return _context.abrupt('return', _context.sent);
-
-          case 3:
+          case 1:
           case 'end':
             return _context.stop();
         }

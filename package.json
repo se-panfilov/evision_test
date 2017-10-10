@@ -10,11 +10,13 @@
     "server": "node apiserver/server.js",
     "build": "rimraf ./dist/** && webpack --config webpack.conf.js",
     "dev": "webpack --config webpack.conf.js --watch",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint --ext .js src/modules test/unit/specs"
   },
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-polyfill": "^6.26.0",
@@ -24,6 +26,11 @@
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^0.28.7",
     "eslint": "^4.8.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^3.0.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",

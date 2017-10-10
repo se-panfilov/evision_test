@@ -1,7 +1,7 @@
 import {URL} from '../config/config'
 import {ERRORS} from '../config/constants'
 
-let showErrorCustomFn = undefined
+let showErrorCustomFn
 
 function showError (message) {
   return (showErrorCustomFn) ? showErrorCustomFn(message) : console.error(message)
@@ -25,20 +25,20 @@ function onError (response) {
 }
 
 export async function getData (entityStr) {
-  return await fetch(`${URL}/${entityStr}`).then(response => {
+  return fetch(`${URL}/${entityStr}`).then(response => {
     if (!response.ok) return onError(response)
 
     return response.json()
   })
 }
 
-export function addData (url) {
-  return fetch(`${URL}/${entityStr}/add`).then(response => {
-    if (!response.ok) return onError(response)
-
-    return response.json()
-  })
-}
+// export function addData (entityStr) {
+//   return fetch(`${URL}/${entityStr}/add`).then(response => {
+//     if (!response.ok) return onError(response)
+//
+//     return response.json()
+//   })
+// }
 
 export function setErrorOutput (fn) {
   showErrorCustomFn = fn
