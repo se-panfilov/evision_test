@@ -61,8 +61,8 @@ export function setDebitsAndCreditsList (data) {
     const date = new Date(v.date)
 
     c += `<tr class="${debitAndCreditList}__item">`
-    c += createElem('td', `${debitAndCreditList}__cell`, v.from)
-    c += createElem('td', `${debitAndCreditList}__cell`, v.to)
+    c += createElem('td', `${debitAndCreditList}__cell`, v.from || '-')
+    c += createElem('td', `${debitAndCreditList}__cell`, v.to || '-')
     c += createElem('td', `${debitAndCreditList}__cell`, v.amount)
     c += createElem('td', `${debitAndCreditList}__cell`, v.description)
     c += createElem('td', `${debitAndCreditList}__cell`, `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`)

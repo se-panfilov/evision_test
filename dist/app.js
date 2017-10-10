@@ -9354,8 +9354,8 @@ function setDebitsAndCreditsList(data) {
     var date = new Date(v.date);
 
     c += '<tr class="' + debitAndCreditList + '__item">';
-    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.from);
-    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.to);
+    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.from || '-');
+    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.to || '-');
     c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.amount);
     c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.description);
     c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());

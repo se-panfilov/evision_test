@@ -8,24 +8,30 @@
 
 <div class="container">
   <div id="notifications-box" class="notifications-box"></div>
-  <section class="account-info">
-    <h1 id="account-name" class="account-info__name"></h1>
-    <h3 id="account-iban" class="account-info__iban"></h3>
-    <div class="account-balance-container">
-      <span id="account-balance" class="account-info__balance"></span>
-      <span id="account-currency" class="account-info__currency"></span>
-    </div>
-  </section>
-
-  <section class="account-manage">
-    <section class="account-manage__buttons account-buttons">
-      <button type="button" class="account-buttons__btn">Add</button>
+  <div class="account">
+    <section class="account__info account__item">
+      <section class="account-item__section">
+        <h1 id="account-name" class="account-info__name"></h1>
+        <h3 id="account-iban" class="account-info__iban"></h3>
+      </section>
+      <section class="account-item__section">
+        <div class="account-balance-container">
+          <span id="account-balance" class="account-info__balance"></span>
+          <span id="account-currency" class="account-info__currency"></span>
+        </div>
+      </section>
     </section>
-  </section>
 
-  <section class="account-list">
-    <table id="debit-and-credit-list" class="debit-and-credit-list"></table>
-  </section>
+    <section class="account__manage account__item">
+      <section class="account-manage__buttons account-buttons">
+        <button type="button" class="account-buttons__btn">Add</button>
+      </section>
+    </section>
+
+    <section class="account__list account__item">
+      <table id="debit-and-credit-list" class="debit-and-credit-list"></table>
+    </section>
+  </div>
 </div>
 
 </body>

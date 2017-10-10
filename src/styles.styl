@@ -1,3 +1,6 @@
+html, body
+  height:100%
+
 body
   background-color #2b2b2b
   margin 0
@@ -5,9 +8,44 @@ body
   font-size 16px
 
 .container
+  height 100%
+
+.account
+  height 100%
   color #e2e2e2
   background-color #313336
   margin 0 36px
+  display flex
+  flex-direction column
+  justify-content space-between
+  &__item
+    display block
+    padding 15px
+  &__info
+    padding 15px
+    padding-top 25px
+  &__list
+    padding 15px 0
+  &__manage
+    &__buttons
+      border 1ps solid red
+
+.account-info
+  &__name
+    margin 0
+    font-size 2em
+  &__iban
+    margin 0
+    font-weight normal
+    font-size 1em
+
+.account__info
+  display flex
+  flex-direction row
+  justify-content space-between
+  &__section
+    color red
+
 
 .notifications-box
   position fixed
@@ -26,23 +64,8 @@ body
     background-color #e37763
     border-color #d06d5b
 
-.account-manage
-  &__buttons
-    border 1ps solid red
-
-.account-info
-  padding 15px
-  padding-top 25px
-  &__name
-    margin 0
-    font-size 2em
-  &__iban
-    margin 0
-    font-weight normal
-    font-size 1em
 .account-balance-container
-  float right
-  font-size 1em
+  font-size 1.5em
 
 .account-buttons
   &__btn
@@ -57,6 +80,7 @@ body
 
 .debit-and-credit-list
   width 100%
+  max-height 400px
   overflow-y scroll
   border-spacing 0
   &__item
@@ -64,9 +88,13 @@ body
     background-color #3c3e41
     &:nth-of-type(odd)
       background-color #434548
+      &:hover
+        background-color #46484b
     &:last-of-type
       .debit-and-credit-list__cell
         border-bottom 0
+    &:hover
+      background-color #3f4144
   &__cell
     padding 5px
     border-bottom 1px solid
