@@ -53,6 +53,13 @@ const debitsAndCreditsHeaders = `<tr>
 <th class="${debitAndCreditList}__header">Date</th>
 </tr>`
 
+function createTD (val) {
+  const nodeType = 'td'
+  const cellClass = '__cell'
+
+  return createElem(nodeType, `${debitAndCreditList}${cellClass}`, val || '-')
+}
+
 export function setDebitsAndCreditsList (data) {
   if (!data) throw new Error('displayData: No data')
 
@@ -61,11 +68,11 @@ export function setDebitsAndCreditsList (data) {
     const date = new Date(v.date)
 
     c += `<tr class="${debitAndCreditList}__item">`
-    c += createElem('td', `${debitAndCreditList}__cell`, v.from || '-')
-    c += createElem('td', `${debitAndCreditList}__cell`, v.to || '-')
-    c += createElem('td', `${debitAndCreditList}__cell`, v.amount)
-    c += createElem('td', `${debitAndCreditList}__cell`, v.description)
-    c += createElem('td', `${debitAndCreditList}__cell`, `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`)
+    c += createTD(v.from)
+    c += createTD(v.to)
+    c += createTD(v.amount)
+    c += createTD(v.description)
+    c += createTD(`${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`)
     c += '</tr>'
 
     return c

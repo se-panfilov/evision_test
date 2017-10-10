@@ -3795,7 +3795,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.getElement = getElement;
 exports.setHTML = setHTML;
 exports.clearHTML = clearHTML;
-exports.addEventListener = addEventListener;
 exports.createElem = createElem;
 function getElement(id) {
   if (!id) return new Error('getElement: no id');
@@ -3805,24 +3804,22 @@ function getElement(id) {
 function setHTML(elem, content) {
   if (!elem) throw new Error('setHTML: no such element');
   elem.innerHTML = content;
-  return elem;
 }
 
 function clearHTML(elem) {
   if (!elem) throw new Error('setHTML: no such element');
   setHTML(elem, '');
-  return elem;
 }
 
-function addEventListener(elem, event, handler) {
-  if (!elem) throw new Error('addEventListener: no such element');
-  if (!event) throw new Error('addEventListener: no event provided');
-  if (!handler) throw new Error('addEventListener: no handler provided');
-
-  elem.addEventListener(event, handler);
-
-  return elem;
-}
+// export function addEventListener (elem, event, handler) {
+//   if (!elem) throw new Error('addEventListener: no such element')
+//   if (!event) throw new Error('addEventListener: no event provided')
+//   if (!handler) throw new Error('addEventListener: no handler provided')
+//
+//   elem.addEventListener(event, handler)
+//
+//   return elem
+// }
 
 function createElem() {
   var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
@@ -9266,9 +9263,7 @@ function blinkMessage(message, typeClass) {
 
   showMessage(message, typeClass);
 
-  return setTimeout(function () {
-    clearMessage();
-  }, timeout);
+  return setTimeout(clearMessage, timeout);
 }
 
 /***/ }),
@@ -9337,6 +9332,13 @@ function setCurrencyVal(val) {
 
 var debitsAndCreditsHeaders = '<tr>\n<th class="' + debitAndCreditList + '__header">From</th>\n<th class="' + debitAndCreditList + '__header">To</th>\n<th class="' + debitAndCreditList + '__header">Amount</th>\n<th class="' + debitAndCreditList + '__header">Descriptions</th>\n<th class="' + debitAndCreditList + '__header">Date</th>\n</tr>';
 
+function createTD(val) {
+  var nodeType = 'td';
+  var cellClass = '__cell';
+
+  return (0, _dom.createElem)(nodeType, '' + debitAndCreditList + cellClass, val || '-');
+}
+
 function setDebitsAndCreditsList(data) {
   if (!data) throw new Error('displayData: No data');
 
@@ -9345,11 +9347,11 @@ function setDebitsAndCreditsList(data) {
     var date = new Date(v.date);
 
     c += '<tr class="' + debitAndCreditList + '__item">';
-    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.from || '-');
-    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.to || '-');
-    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.amount);
-    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.description);
-    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    c += createTD(v.from);
+    c += createTD(v.to);
+    c += createTD(v.amount);
+    c += createTD(v.description);
+    c += createTD(date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
     c += '</tr>';
 
     return c;

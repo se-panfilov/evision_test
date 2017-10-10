@@ -15,7 +15,5 @@ export function clearMessage () {
 export function blinkMessage (message, typeClass, timeout = 3000) {
   showMessage(message, typeClass)
 
-  return setTimeout(() => {
-    clearMessage()
-  }, timeout)
+  return setTimeout(clearMessage, timeout)
 }
