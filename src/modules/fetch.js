@@ -41,5 +41,5 @@ export function addData (url) {
 }
 
 export function setErrorOutput (fn) {
-
+  showErrorCustomFn = fn
 }

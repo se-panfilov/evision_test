@@ -3753,7 +3753,9 @@ function addData(url) {
   });
 }
 
-function setErrorOutput(fn) {}
+function setErrorOutput(fn) {
+  showErrorCustomFn = fn;
+}
 
 /***/ }),
 /* 125 */
@@ -3789,7 +3791,7 @@ function setHTML(elem, content) {
 
 function clearHTML(elem) {
   if (!elem) throw new Error('setHTML: no such element');
-  this.setHTML(elem, '');
+  setHTML(elem, '');
   return elem;
 }
 
@@ -9234,14 +9236,12 @@ function clearMessage() {
 }
 
 function blinkMessage(message, typeClass) {
-  var _this = this;
-
   var timeout = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3000;
 
-  this.showMessage(message, typeClass);
+  showMessage(message, typeClass);
 
   return setTimeout(function () {
-    _this.clearMessage();
+    clearMessage();
   }, timeout);
 }
 

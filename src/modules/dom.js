@@ -11,7 +11,7 @@ export function setHTML (elem, content) {
 
 export function clearHTML (elem) {
   if (!elem) throw new Error('setHTML: no such element')
-  this.setHTML(elem, '')
+  setHTML(elem, '')
   return elem
 }
 
