@@ -2,8 +2,10 @@ body {
   background-color: #2b2b2b;
   margin: 0;
   padding: 0;
+  font-size: 16px;
 }
 .container {
+  color: #e2e2e2;
   background-color: #313336;
   margin: 0 36px;
 }
@@ -29,7 +31,21 @@ body {
   border: 1ps solid #f00;
 }
 .account-info {
-  padding-top: 35px;
+  padding: 15px;
+  padding-top: 25px;
+}
+.account-info__name {
+  margin: 0;
+  font-size: 2em;
+}
+.account-info__iban {
+  margin: 0;
+  font-weight: normal;
+  font-size: 1em;
+}
+.account-balance-container {
+  float: right;
+  font-size: 1em;
 }
 .account-buttons__btn {
   background-color: #3c3e41;
@@ -43,4 +59,31 @@ body {
 .account-buttons__btn:active,
 .account-buttons__btn:focus {
   background-color: #414346;
+}
+.debit-and-credit-list {
+  width: 100%;
+  overflow-y: scroll;
+  border-spacing: 0;
+}
+.debit-and-credit-list__item {
+  padding: 6px;
+  background-color: #3c3e41;
+}
+.debit-and-credit-list__item:nth-of-type(odd) {
+  background-color: #434548;
+}
+.debit-and-credit-list__item:last-of-type .debit-and-credit-list__cell {
+  border-bottom: 0;
+}
+.debit-and-credit-list__cell {
+  padding: 5px;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-color: #2b2b2b;
+}
+.debit-and-credit-list__cell:first-of-type {
+  border-left: 0;
+}
+.debit-and-credit-list__header {
+  padding: 10px;
 }

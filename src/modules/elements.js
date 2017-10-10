@@ -45,7 +45,13 @@ export function setCurrencyVal (val) {
   updateElem(currencyId, val)
 }
 
-const debitsAndCreditsHeaders = '<tr><th>From</th><th>To</th><th>Amount</th><th>Descriptions</th><th>Date</th></tr>'
+const debitsAndCreditsHeaders = `<tr>
+<th class="${debitAndCreditList}__header">From</th>
+<th class="${debitAndCreditList}__header">To</th>
+<th class="${debitAndCreditList}__header">Amount</th>
+<th class="${debitAndCreditList}__header">Descriptions</th>
+<th class="${debitAndCreditList}__header">Date</th>
+</tr>`
 
 export function setDebitsAndCreditsList (data) {
   if (!data) throw new Error('displayData: No data')
@@ -53,17 +59,17 @@ export function setDebitsAndCreditsList (data) {
   let itemsHtml = debitsAndCreditsHeaders
   itemsHtml += data.reduce((c, v) => {
     const date = new Date(v.date)
-    const str = `${v.from}, ${v.description}, ${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
-    c += '<tr class="`${debitAndCreditList}__item`">'
+
+    c += `<tr class="${debitAndCreditList}__item">`
     c += createElem('td', `${debitAndCreditList}__cell`, v.from)
     c += createElem('td', `${debitAndCreditList}__cell`, v.to)
     c += createElem('td', `${debitAndCreditList}__cell`, v.amount)
     c += createElem('td', `${debitAndCreditList}__cell`, v.description)
     c += createElem('td', `${debitAndCreditList}__cell`, `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`)
     c += '</tr>'
+
     return c
   }, '')
 
   updateElem(debitAndCreditList, itemsHtml)
-  // setHTML(debitAndCreditList, itemsHtml)
 }
