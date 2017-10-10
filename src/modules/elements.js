@@ -1,4 +1,4 @@
-import {getElement, setHTML} from './dom'
+import {getElement, setHTML, createElem} from './dom'
 
 const messages = {
   elemNotFound: 'No such element',
@@ -9,6 +9,8 @@ const notificationsBoxId = 'notifications-box'
 const balanceId = 'account-balance'
 const ibanId = 'account-iban'
 const nameId = 'account-name'
+const currencyId = 'account-currency'
+const debitAndCreditList = 'debit-and-credit-list'
 
 function getElem (id) {
   if (!id) throw new Error(messages.noId)
@@ -18,21 +20,40 @@ function getElem (id) {
   return elem
 }
 
+function updateElem (id, val) {
+  const elem = getElem(id)
+  return setHTML(elem, val)
+}
+
 export function getNotificationsBox () {
   return getElem(notificationsBoxId)
 }
 
 export function setBalanceVal (val) {
-  const elem = getElem(balanceId)
-  return setHTML(elem, val)
+  updateElem(balanceId, val)
 }
 
 export function setIbanVal (val) {
-  const elem = getElem(ibanId)
-  return setHTML(elem, val)
+  updateElem(ibanId, val)
 }
 
 export function setNameVal (val) {
-  const elem = getElem(nameId)
-  return setHTML(elem, val)
+  updateElem(nameId, val)
+}
+export function setCurrencyVal (val) {
+  updateElem(currencyId, val)
+}
+
+export function setDebitsAndCreditsList (data) {
+  if (!data) throw new Error('displayData: No data')
+
+  const itemsHtml = data.reduce((c, v) => {
+    const date = new Date(v.date)
+    const str = `${v.from}, ${v.description}, ${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
+    c += createElem('li', `${debitAndCreditList}__item`, str)
+    return c
+  }, '')
+
+  updateElem(debitAndCreditList, itemsHtml)
+  // setHTML(debitAndCreditList, itemsHtml)
 }

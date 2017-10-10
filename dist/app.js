@@ -9179,10 +9179,14 @@ __webpack_require__(335);
   console.info(111);
   console.info(data);
   console.info(111);
+  var account = data.account;
 
-  (0, _elements.setBalanceVal)(data.account.balance);
-  (0, _elements.setIbanVal)(data.account.iban);
-  (0, _elements.setNameVal)(data.account.name);
+  (0, _elements.setBalanceVal)(account.balance);
+  (0, _elements.setIbanVal)(account.iban);
+  (0, _elements.setNameVal)(account.name);
+  (0, _elements.setCurrencyVal)(data.currency);
+
+  (0, _elements.setDebitsAndCreditsList)(data.debitsAndCredits);
 });
 
 /***/ }),
@@ -9290,6 +9294,8 @@ exports.getNotificationsBox = getNotificationsBox;
 exports.setBalanceVal = setBalanceVal;
 exports.setIbanVal = setIbanVal;
 exports.setNameVal = setNameVal;
+exports.setCurrencyVal = setCurrencyVal;
+exports.setDebitsAndCreditsList = setDebitsAndCreditsList;
 
 var _dom = __webpack_require__(126);
 
@@ -9302,6 +9308,8 @@ var notificationsBoxId = 'notifications-box';
 var balanceId = 'account-balance';
 var ibanId = 'account-iban';
 var nameId = 'account-name';
+var currencyId = 'account-currency';
+var debitAndCreditList = 'debit-and-credit-list';
 
 function getElem(id) {
   if (!id) throw new Error(messages.noId);
@@ -9311,23 +9319,42 @@ function getElem(id) {
   return elem;
 }
 
+function updateElem(id, val) {
+  var elem = getElem(id);
+  return (0, _dom.setHTML)(elem, val);
+}
+
 function getNotificationsBox() {
   return getElem(notificationsBoxId);
 }
 
 function setBalanceVal(val) {
-  var elem = getElem(balanceId);
-  return (0, _dom.setHTML)(elem, val);
+  updateElem(balanceId, val);
 }
 
 function setIbanVal(val) {
-  var elem = getElem(ibanId);
-  return (0, _dom.setHTML)(elem, val);
+  updateElem(ibanId, val);
 }
 
 function setNameVal(val) {
-  var elem = getElem(nameId);
-  return (0, _dom.setHTML)(elem, val);
+  updateElem(nameId, val);
+}
+function setCurrencyVal(val) {
+  updateElem(currencyId, val);
+}
+
+function setDebitsAndCreditsList(data) {
+  if (!data) throw new Error('displayData: No data');
+
+  var itemsHtml = data.reduce(function (c, v) {
+    var date = new Date(v.date);
+    var str = v.from + ', ' + v.description + ', ' + date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+    c += (0, _dom.createElem)('li', debitAndCreditList + '__item', str);
+    return c;
+  }, '');
+
+  updateElem(debitAndCreditList, itemsHtml);
+  // setHTML(debitAndCreditList, itemsHtml)
 }
 
 /***/ }),
