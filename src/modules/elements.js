@@ -40,17 +40,27 @@ export function setIbanVal (val) {
 export function setNameVal (val) {
   updateElem(nameId, val)
 }
+
 export function setCurrencyVal (val) {
   updateElem(currencyId, val)
 }
 
+const debitsAndCreditsHeaders = '<tr><th>From</th><th>To</th><th>Amount</th><th>Descriptions</th><th>Date</th></tr>'
+
 export function setDebitsAndCreditsList (data) {
   if (!data) throw new Error('displayData: No data')
 
-  const itemsHtml = data.reduce((c, v) => {
+  let itemsHtml = debitsAndCreditsHeaders
+  itemsHtml += data.reduce((c, v) => {
     const date = new Date(v.date)
     const str = `${v.from}, ${v.description}, ${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
-    c += createElem('li', `${debitAndCreditList}__item`, str)
+    c += '<tr class="`${debitAndCreditList}__item`">'
+    c += createElem('td', `${debitAndCreditList}__cell`, v.from)
+    c += createElem('td', `${debitAndCreditList}__cell`, v.to)
+    c += createElem('td', `${debitAndCreditList}__cell`, v.amount)
+    c += createElem('td', `${debitAndCreditList}__cell`, v.description)
+    c += createElem('td', `${debitAndCreditList}__cell`, `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`)
+    c += '</tr>'
     return c
   }, '')
 

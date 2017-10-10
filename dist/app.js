@@ -9339,17 +9339,27 @@ function setIbanVal(val) {
 function setNameVal(val) {
   updateElem(nameId, val);
 }
+
 function setCurrencyVal(val) {
   updateElem(currencyId, val);
 }
 
+var debitsAndCreditsHeaders = '<tr><th>From</th><th>To</th><th>Amount</th><th>Descriptions</th><th>Date</th></tr>';
+
 function setDebitsAndCreditsList(data) {
   if (!data) throw new Error('displayData: No data');
 
-  var itemsHtml = data.reduce(function (c, v) {
+  var itemsHtml = debitsAndCreditsHeaders;
+  itemsHtml += data.reduce(function (c, v) {
     var date = new Date(v.date);
     var str = v.from + ', ' + v.description + ', ' + date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
-    c += (0, _dom.createElem)('li', debitAndCreditList + '__item', str);
+    c += '<tr class="`${debitAndCreditList}__item`">';
+    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.from);
+    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.to);
+    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.amount);
+    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', v.description);
+    c += (0, _dom.createElem)('td', debitAndCreditList + '__cell', date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    c += '</tr>';
     return c;
   }, '');
 
