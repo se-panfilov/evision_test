@@ -1,13 +1,20 @@
-import {getBalance} from './modules/balance'
+import {getAccountData} from './modules/account'
 import {setErrorOutput} from './modules/fetch'
 import {blinkMessage} from './modules/messages'
+import {setBalanceVal, setIbanVal, setNameVal} from './modules/elements'
 import './styles.styl'
 
 setErrorOutput(blinkMessage)
 
-getBalance().then(v => {
+getAccountData().then(data => {
+
   console.info(111)
-  console.info(v)
+  console.info(data)
   console.info(111)
+
+  setBalanceVal(data.account.balance)
+  setIbanVal(data.account.iban)
+  setNameVal(data.account.name)
+
 })
 

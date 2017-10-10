@@ -9162,20 +9162,27 @@ module.exports = function (regExp, replace) {
 "use strict";
 
 
-var _balance = __webpack_require__(331);
+var _account = __webpack_require__(331);
 
 var _fetch = __webpack_require__(124);
 
 var _messages = __webpack_require__(333);
 
+var _elements = __webpack_require__(334);
+
 __webpack_require__(335);
 
 (0, _fetch.setErrorOutput)(_messages.blinkMessage);
 
-(0, _balance.getBalance)().then(function (v) {
+(0, _account.getAccountData)().then(function (data) {
+
   console.info(111);
-  console.info(v);
+  console.info(data);
   console.info(111);
+
+  (0, _elements.setBalanceVal)(data.account.balance);
+  (0, _elements.setIbanVal)(data.account.iban);
+  (0, _elements.setNameVal)(data.account.name);
 });
 
 /***/ }),
@@ -9188,9 +9195,9 @@ __webpack_require__(335);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getBalance = undefined;
+exports.getAccountData = undefined;
 
-var getBalance = exports.getBalance = function () {
+var getAccountData = exports.getAccountData = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -9210,7 +9217,7 @@ var getBalance = exports.getBalance = function () {
     }, _callee, this);
   }));
 
-  return function getBalance() {
+  return function getAccountData() {
     return _ref.apply(this, arguments);
   };
 }();
@@ -9280,6 +9287,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getNotificationsBox = getNotificationsBox;
+exports.setBalanceVal = setBalanceVal;
+exports.setIbanVal = setIbanVal;
+exports.setNameVal = setNameVal;
 
 var _dom = __webpack_require__(126);
 
@@ -9289,6 +9299,9 @@ var messages = {
 };
 
 var notificationsBoxId = 'notifications-box';
+var balanceId = 'account-balance';
+var ibanId = 'account-iban';
+var nameId = 'account-name';
 
 function getElem(id) {
   if (!id) throw new Error(messages.noId);
@@ -9300,6 +9313,21 @@ function getElem(id) {
 
 function getNotificationsBox() {
   return getElem(notificationsBoxId);
+}
+
+function setBalanceVal(val) {
+  var elem = getElem(balanceId);
+  return (0, _dom.setHTML)(elem, val);
+}
+
+function setIbanVal(val) {
+  var elem = getElem(ibanId);
+  return (0, _dom.setHTML)(elem, val);
+}
+
+function setNameVal(val) {
+  var elem = getElem(nameId);
+  return (0, _dom.setHTML)(elem, val);
 }
 
 /***/ }),
