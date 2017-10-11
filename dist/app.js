@@ -9333,7 +9333,13 @@ function setCurrencyVal(val) {
   updateElem(currencyId, val);
 }
 
-var debitsAndCreditsHeaders = '<tr>\n<th class="' + debitAndCreditList + '__header">From</th>\n<th class="' + debitAndCreditList + '__header">To</th>\n<th class="' + debitAndCreditList + '__header">Amount</th>\n<th class="' + debitAndCreditList + '__header">Descriptions</th>\n<th class="' + debitAndCreditList + '__header">Date</th>\n</tr>';
+// const debitsAndCreditsHeaders = `<tr>
+// <th class="${debitAndCreditList}__header">From</th>
+// <th class="${debitAndCreditList}__header">To</th>
+// <th class="${debitAndCreditList}__header">Amount</th>
+// <th class="${debitAndCreditList}__header">Descriptions</th>
+// <th class="${debitAndCreditList}__header">Date</th>
+// </tr>`
 
 function createTD(val) {
   var nodeType = 'td';
@@ -9345,8 +9351,8 @@ function createTD(val) {
 function setDebitsAndCreditsList(data) {
   if (!data) throw new Error('displayData: No data');
 
-  var itemsHtml = debitsAndCreditsHeaders;
-  itemsHtml += data.reduce(function (c, v) {
+  // let itemsHtml = debitsAndCreditsHeaders
+  var itemsHtml = data.reduce(function (c, v) {
     var date = new Date(v.date);
 
     c += '<tr class="' + debitAndCreditList + '__item">';

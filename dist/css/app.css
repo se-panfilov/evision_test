@@ -34,7 +34,7 @@ body {
   padding: 15px 0;
 }
 .account__manage__buttons {
-  border: 1ps solid #f00;
+  border: 1 ps solid #f00;
 }
 .account-info__name {
   margin: 0;
@@ -92,9 +92,11 @@ body {
 }
 .debit-and-credit-list {
   width: 100%;
-  max-height: 400px;
-  overflow-y: scroll;
+  height: 400px;
   border-spacing: 0;
+}
+.debit-and-credit-list .table-body {
+  overflow-y: scroll;
 }
 .debit-and-credit-list__item {
   padding: 6px;
@@ -138,11 +140,20 @@ body {
   margin-left: 0;
   padding-left: 0;
 }
-@media (min-width: 800px) {
+.table-wrapper {
+  height: 400px;
+  overflow-y: scroll;
+}
+.table-header {
+  width: 100%;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px), only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1), only screen and (min-device-width: 375px) and (max-device-width: 667px), only screen and (min-device-width: 414px) and (max-device-width: 736px), only screen and (min-device-width: 320px) and (max-device-width: 568px), only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .account {
     display: block;
     margin-left: 0;
     margin-right: 0;
+    padding-left: 5px;
+    padding-right: 5px;
   }
   .account__item {
     padding: 0;
@@ -162,6 +173,12 @@ body {
     display: block;
     margin: 0;
     box-sizing: border-box;
+  }
+  .form__input.\--radio {
+    display: inline-block;
+    width: 13px;
+    min-width: 13px;
+    margin: 3px;
   }
   .form-label {
     margin: 3px;
@@ -193,5 +210,9 @@ body {
     box-sizing: border-box;
     font-size: 1.5em;
     height: 35px;
+  }
+  .balance-change-type__header {
+    font-size: 1.2em;
+    margin: 0;
   }
 }

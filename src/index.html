@@ -37,34 +37,48 @@
             <div class="form-label__description">Description</div>
             <input type="text" id="new-balance-description" class="form__input" required />
           </label>
-          <ul class="form__list">
-            <li>
-              <label class="form__label">
-                <input type="radio"
-                       value="debit"
-                       name="new-balance-record-type"
-                       class="form__input --radio"
-                       checked />
-                <span class="form-label__description">Debit</span>
-              </label>
-            </li>
-            <li>
-              <label class="form__label">
-                <input type="radio"
-                       value="credit"
-                       name="new-balance-record-type"
-                       class="form__input --radio" />
-                <span class="form-label__description">Credit</span>
-              </label>
-            </li>
-          </ul>
+          <section class="balance-change-type">
+            <h4 class="balance-change-type__header">Type</h4>
+            <ul class="form__list">
+              <li>
+                <label class="form__label">
+                  <input type="radio"
+                         value="debit"
+                         name="new-balance-record-type"
+                         class="form__input --radio"
+                         checked />
+                  <span class="form-label__description">Debit</span>
+                </label>
+              </li>
+              <li>
+                <label class="form__label">
+                  <input type="radio"
+                         value="credit"
+                         name="new-balance-record-type"
+                         class="form__input --radio" />
+                  <span class="form-label__description">Credit</span>
+                </label>
+              </li>
+            </ul>
+          </section>
           <button type="submit" class="account-buttons__btn -wide">Add</button>
         </form>
       </section>
     </section>
 
     <section class="account__list account__item">
-      <table id="debit-and-credit-list" class="debit-and-credit-list"></table>
+      <table class="table-header">
+        <tr>
+          <th class="debit-and-credit-list__header">From</th>
+          <th class="debit-and-credit-list__header">To</th>
+          <th class="debit-and-credit-list__header">Amount</th>
+          <th class="debit-and-credit-list__header">Descriptions</th>
+          <th class="debit-and-credit-list__header">Date</th>
+        </tr>
+      </table>
+      <div class="table-wrapper">
+        <table id="debit-and-credit-list" class="debit-and-credit-list"></table>
+      </div>
     </section>
   </div>
 </div>
