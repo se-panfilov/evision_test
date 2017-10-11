@@ -27,19 +27,15 @@
         <form id="change-balance-form" name="change-balance-form" class="change-balance-form form">
           <label class="form__label form-label">
             <div class="form-label__description">Amount</div>
-            <input type="number" id="new-balance-amount" class="change-balance-form__input" required />
+            <input type="number" id="new-balance-amount" class="form__input" required />
           </label>
           <label class="form__label form-label">
-            <div class="form-label__description">From</div>
-            <input type="date" id="new-balance-from" class="change-balance-form__input" required />
-          </label>
-          <label class="form__label form-label">
-            <div class="form-label__description">To</div>
-            <input type="date" id="new-balance-to" class="change-balance-form__input" required />
+            <div class="form-label__description">From/To</div>
+            <input type="text" id="new-balance-from-or-to" class="form__input" required />
           </label>
           <label class="form__label form-label">
             <div class="form-label__description">Description</div>
-            <input type="text" id="new-balance-description" class="change-balance-form__input" required />
+            <input type="text" id="new-balance-description" class="form__input" required />
           </label>
           <ul class="form__list">
             <li>
@@ -47,7 +43,7 @@
                 <input type="radio"
                        value="debit"
                        name="new-balance-record-type"
-                       class="change-balance-form__input --radio"
+                       class="form__input --radio"
                        checked />
                 <span class="form-label__description">Debit</span>
               </label>
@@ -57,7 +53,7 @@
                 <input type="radio"
                        value="credit"
                        name="new-balance-record-type"
-                       class="change-balance-form__input --radio" />
+                       class="form__input --radio" />
                 <span class="form-label__description">Credit</span>
               </label>
             </li>

@@ -4,7 +4,7 @@ import {getNotificationsBox} from './elements'
 const container = getNotificationsBox()
 
 export function showMessage (message, typeClass = 'error', elemType = 'div') {
-  const msgHtml = createElem(elemType, `notification-box___item -${typeClass}`, message)
+  const msgHtml = createElem(elemType, `notifications-box__item -${typeClass}`, message)
   setHTML(container, msgHtml)
 }
 
@@ -15,5 +15,5 @@ export function clearMessage () {
 export function blinkMessage (message, typeClass, timeout = 3000) {
   showMessage(message, typeClass)
 
-  return setTimeout(clearMessage, timeout)
+  // return setTimeout(clearMessage, timeout)
 }

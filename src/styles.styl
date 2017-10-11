@@ -21,6 +21,8 @@ body
   &__item
     display block
     padding 15px
+    flex 1 0 0
+    flex-basis auto
   &__info
     padding 15px
     padding-top 25px
@@ -50,19 +52,18 @@ body
 .notifications-box
   position fixed
   left 0
-  height 35px
+  max-height 35px
   width 100%
-
-.notification-box___item
-  float right
-  width 200px
-  height 28px
-  text-align left
-  border 1px solid
-  padding 3px
-  &.-error
-    background-color #e37763
-    border-color #d06d5b
+  &__item
+    float right
+    width 200px
+    height 28px
+    text-align left
+    border 1px solid
+    padding 3px
+    &.-error
+      background-color #e37763
+      border-color #d06d5b
 
 .account-balance-container
   font-size 1.5em
@@ -107,7 +108,7 @@ body
   &__header
     padding 10px
 
-.change-balance-form
+.form
   &__input
     background-color #f6f6f6
     border 1px solid rgba(0,0,0,.15)
@@ -122,3 +123,56 @@ body
     list-style none
     margin-left 0
     padding-left 0
+
+@media (min-width: 800px)
+  .account
+    display block
+    margin-left 0
+    margin-right 0
+    &__item
+      padding 0
+      &__info
+        padding 0
+        padding-top 25px
+      &__list
+        padding 0
+      &__manage
+        padding 0
+
+  .form
+    &__input
+      width 100%
+      display block
+      margin 0
+      box-sizing border-box
+
+  .form-label
+    margin 3px
+    &__description
+      font-size 1.5em
+
+  .account-buttons
+    &__btn
+      &.-wide
+        width 100%
+
+  .account-info
+    &__name
+      font-size 3em
+    &__iban
+      font-size 2em
+
+  .account-balance-container
+    font-size 2.5em
+
+  .notifications-box
+    left 0
+    right 0
+    max-height 40px
+    &__item
+      width 100%
+      padding-left 5px
+      padding-right 5px
+      box-sizing border-box
+      font-size 1.5em
+      height 35px

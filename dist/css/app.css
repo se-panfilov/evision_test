@@ -23,6 +23,8 @@ body {
 .account__item {
   display: block;
   padding: 15px;
+  flex: 1 0 0;
+  flex-basis: auto;
 }
 .account__info {
   padding: 15px;
@@ -54,10 +56,10 @@ body {
 .notifications-box {
   position: fixed;
   left: 0;
-  height: 35px;
+  max-height: 35px;
   width: 100%;
 }
-.notification-box___item {
+.notifications-box__item {
   float: right;
   width: 200px;
   height: 28px;
@@ -65,7 +67,7 @@ body {
   border: 1px solid;
   padding: 3px;
 }
-.notification-box___item.-error {
+.notifications-box__item.-error {
   background-color: #e37763;
   border-color: #d06d5b;
 }
@@ -122,7 +124,7 @@ body {
 .debit-and-credit-list__header {
   padding: 10px;
 }
-.change-balance-form__input {
+.form__input {
   background-color: #f6f6f6;
   border: 1px solid rgba(0,0,0,0.15);
   border-radius: 3px;
@@ -135,4 +137,61 @@ body {
   list-style: none;
   margin-left: 0;
   padding-left: 0;
+}
+@media (min-width: 800px) {
+  .account {
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .account__item {
+    padding: 0;
+  }
+  .account__item__info {
+    padding: 0;
+    padding-top: 25px;
+  }
+  .account__item__list {
+    padding: 0;
+  }
+  .account__item__manage {
+    padding: 0;
+  }
+  .form__input {
+    width: 100%;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .form-label {
+    margin: 3px;
+  }
+  .form-label__description {
+    font-size: 1.5em;
+  }
+  .account-buttons__btn.-wide {
+    width: 100%;
+  }
+  .account-info__name {
+    font-size: 3em;
+  }
+  .account-info__iban {
+    font-size: 2em;
+  }
+  .account-balance-container {
+    font-size: 2.5em;
+  }
+  .notifications-box {
+    left: 0;
+    right: 0;
+    max-height: 40px;
+  }
+  .notifications-box__item {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+    font-size: 1.5em;
+    height: 35px;
+  }
 }
