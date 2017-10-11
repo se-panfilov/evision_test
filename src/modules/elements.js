@@ -1,4 +1,4 @@
-import {getElement, setHTML, createElem} from './dom'
+import {getElement, setHTML, createElem, addEventListener} from './dom'
 
 const messages = {
   elemNotFound: 'No such element',
@@ -11,6 +11,11 @@ const ibanId = 'account-iban'
 const nameId = 'account-name'
 const currencyId = 'account-currency'
 const debitAndCreditList = 'debit-and-credit-list'
+const changeBalanceFormId = 'change-balance-form'
+const newBalanceAmountId = 'new-balance-amount'
+const newBalanceFromOrToId = 'new-balance-from-or-to'
+const newBalanceDescriptionId = 'new-balance-description'
+const newBalanceRecordTypeDebitId = 'new-balance-record-type-debit'
 
 function getElem (id) {
   if (!id) throw new Error(messages.noId)
@@ -45,14 +50,6 @@ export function setCurrencyVal (val) {
   updateElem(currencyId, val)
 }
 
-// const debitsAndCreditsHeaders = `<tr>
-// <th class="${debitAndCreditList}__header">From</th>
-// <th class="${debitAndCreditList}__header">To</th>
-// <th class="${debitAndCreditList}__header">Amount</th>
-// <th class="${debitAndCreditList}__header">Descriptions</th>
-// <th class="${debitAndCreditList}__header">Date</th>
-// </tr>`
-
 function createTD (val) {
   const nodeType = 'td'
   const cellClass = '__cell'
@@ -63,7 +60,6 @@ function createTD (val) {
 export function setDebitsAndCreditsList (data) {
   if (!data) throw new Error('displayData: No data')
 
-  // let itemsHtml = debitsAndCreditsHeaders
   const itemsHtml = data.reduce((c, v) => {
     const date = new Date(v.date)
 
@@ -79,4 +75,30 @@ export function setDebitsAndCreditsList (data) {
   }, '')
 
   updateElem(debitAndCreditList, itemsHtml)
+}
+
+export function setBalanceFormAction (fn, event = 'submit') {
+  const elem = getElem(changeBalanceFormId)
+
+  addEventListener(elem, event, fn)
+}
+
+export function getBalanceFormData () {
+  const newBalanceAmountElem = getElem(newBalanceAmountId)
+  const newBalanceFromOrToIdElem = getElem(newBalanceFromOrToId)
+  const newBalanceDescriptionIdElem = getElem(newBalanceDescriptionId)
+  const newBalanceRecordTypeDebitElem = getElem(newBalanceRecordTypeDebitId)
+
+  const field = (newBalanceRecordTypeDebitElem.checked) ? 'from' : 'to'
+
+  const result = {
+    amount: newBalanceAmountElem.value,
+    description: newBalanceDescriptionIdElem.value,
+    from: null,
+    to: null
+  }
+
+  result[field] = newBalanceFromOrToIdElem.value
+
+  return result
 }

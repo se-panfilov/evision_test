@@ -9,19 +9,17 @@ export function setHTML (elem, content) {
 }
 
 export function clearHTML (elem) {
-  if (!elem) throw new Error('setHTML: no such element')
+  if (!elem) throw new Error('clearHTML: no such element')
   setHTML(elem, '')
 }
 
-// export function addEventListener (elem, event, handler) {
-//   if (!elem) throw new Error('addEventListener: no such element')
-//   if (!event) throw new Error('addEventListener: no event provided')
-//   if (!handler) throw new Error('addEventListener: no handler provided')
-//
-//   elem.addEventListener(event, handler)
-//
-//   return elem
-// }
+export function addEventListener (elem, event, handler) {
+  if (!elem) throw new Error('addEventListener: no such element')
+  if (!event) throw new Error('addEventListener: no event provided')
+  if (!handler) throw new Error('addEventListener: no handler provided')
+
+  elem.addEventListener(event, handler)
+}
 
 export function createElem (tag = 'div', className, text = '') {
   const classes = (className) ? `class="${className}` : ''

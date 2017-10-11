@@ -3733,17 +3733,7 @@ var getData = exports.getData = function () {
   };
 }();
 
-// export function addData (entityStr, value) {
-//   return fetch(`${URL}/${entityStr}/add`, {
-//     method: 'put',
-//     body: JSON.stringify(value)
-//   }).then(response => {
-//     if (!response.ok) return onError(response)
-//
-//     return response.json()
-//   })
-// }
-
+exports.addData = addData;
 exports.setErrorOutput = setErrorOutput;
 
 var _config = __webpack_require__(125);
@@ -3775,6 +3765,17 @@ function onError(response) {
   }
 }
 
+function addData(entityStr, value) {
+  return fetch(_config.URL + '/' + entityStr + '/add', {
+    method: 'put',
+    body: JSON.stringify(value)
+  }).then(function (response) {
+    if (!response.ok) return onError(response);
+
+    return response.json();
+  });
+}
+
 function setErrorOutput(fn) {
   showErrorCustomFn = fn;
 }
@@ -3798,6 +3799,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getElement = getElement;
 exports.setHTML = setHTML;
 exports.clearHTML = clearHTML;
+exports.addEventListener = addEventListener;
 exports.createElem = createElem;
 function getElement(id) {
   if (!id) return new Error('getElement: no id');
@@ -3810,19 +3812,17 @@ function setHTML(elem, content) {
 }
 
 function clearHTML(elem) {
-  if (!elem) throw new Error('setHTML: no such element');
+  if (!elem) throw new Error('clearHTML: no such element');
   setHTML(elem, '');
 }
 
-// export function addEventListener (elem, event, handler) {
-//   if (!elem) throw new Error('addEventListener: no such element')
-//   if (!event) throw new Error('addEventListener: no event provided')
-//   if (!handler) throw new Error('addEventListener: no handler provided')
-//
-//   elem.addEventListener(event, handler)
-//
-//   return elem
-// }
+function addEventListener(elem, event, handler) {
+  if (!elem) throw new Error('addEventListener: no such element');
+  if (!event) throw new Error('addEventListener: no event provided');
+  if (!handler) throw new Error('addEventListener: no handler provided');
+
+  elem.addEventListener(event, handler);
+}
 
 function createElem() {
   var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
@@ -9163,6 +9163,8 @@ var _fetch = __webpack_require__(124);
 
 var _messages = __webpack_require__(333);
 
+var _balance = __webpack_require__(340);
+
 var _elements = __webpack_require__(334);
 
 __webpack_require__(335);
@@ -9170,10 +9172,6 @@ __webpack_require__(335);
 (0, _fetch.setErrorOutput)(_messages.blinkMessage);
 
 (0, _account.getAccountData)().then(function (data) {
-
-  console.info(111);
-  console.info(data);
-  console.info(111);
   var account = data.account;
 
   (0, _elements.setBalanceVal)(account.balance);
@@ -9182,6 +9180,15 @@ __webpack_require__(335);
   (0, _elements.setCurrencyVal)(data.currency);
 
   (0, _elements.setDebitsAndCreditsList)(data.debitsAndCredits);
+});
+
+(0, _elements.setBalanceFormAction)(function (e) {
+  e.preventDefault();
+  var val = (0, _elements.getBalanceFormData)();
+  console.info('qqqqqqq');
+  console.info(val);
+  console.info('qqqqqqq');
+  (0, _balance.addBalance)(val);
 });
 
 /***/ }),
@@ -9285,6 +9292,8 @@ exports.setIbanVal = setIbanVal;
 exports.setNameVal = setNameVal;
 exports.setCurrencyVal = setCurrencyVal;
 exports.setDebitsAndCreditsList = setDebitsAndCreditsList;
+exports.setBalanceFormAction = setBalanceFormAction;
+exports.getBalanceFormData = getBalanceFormData;
 
 var _dom = __webpack_require__(126);
 
@@ -9299,6 +9308,11 @@ var ibanId = 'account-iban';
 var nameId = 'account-name';
 var currencyId = 'account-currency';
 var debitAndCreditList = 'debit-and-credit-list';
+var changeBalanceFormId = 'change-balance-form';
+var newBalanceAmountId = 'new-balance-amount';
+var newBalanceFromOrToId = 'new-balance-from-or-to';
+var newBalanceDescriptionId = 'new-balance-description';
+var newBalanceRecordTypeDebitId = 'new-balance-record-type-debit';
 
 function getElem(id) {
   if (!id) throw new Error(messages.noId);
@@ -9333,14 +9347,6 @@ function setCurrencyVal(val) {
   updateElem(currencyId, val);
 }
 
-// const debitsAndCreditsHeaders = `<tr>
-// <th class="${debitAndCreditList}__header">From</th>
-// <th class="${debitAndCreditList}__header">To</th>
-// <th class="${debitAndCreditList}__header">Amount</th>
-// <th class="${debitAndCreditList}__header">Descriptions</th>
-// <th class="${debitAndCreditList}__header">Date</th>
-// </tr>`
-
 function createTD(val) {
   var nodeType = 'td';
   var cellClass = '__cell';
@@ -9351,7 +9357,6 @@ function createTD(val) {
 function setDebitsAndCreditsList(data) {
   if (!data) throw new Error('displayData: No data');
 
-  // let itemsHtml = debitsAndCreditsHeaders
   var itemsHtml = data.reduce(function (c, v) {
     var date = new Date(v.date);
 
@@ -9369,11 +9374,63 @@ function setDebitsAndCreditsList(data) {
   updateElem(debitAndCreditList, itemsHtml);
 }
 
+function setBalanceFormAction(fn) {
+  var event = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'submit';
+
+  var elem = getElem(changeBalanceFormId);
+
+  (0, _dom.addEventListener)(elem, event, fn);
+}
+
+function getBalanceFormData() {
+  var newBalanceAmountElem = getElem(newBalanceAmountId);
+  var newBalanceFromOrToIdElem = getElem(newBalanceFromOrToId);
+  var newBalanceDescriptionIdElem = getElem(newBalanceDescriptionId);
+  var newBalanceRecordTypeDebitElem = getElem(newBalanceRecordTypeDebitId);
+
+  var field = newBalanceRecordTypeDebitElem.checked ? 'from' : 'to';
+
+  var result = {
+    amount: newBalanceAmountElem.value,
+    description: newBalanceDescriptionIdElem.value,
+    from: null,
+    to: null
+  };
+
+  result[field] = newBalanceFromOrToIdElem.value;
+
+  return result;
+}
+
 /***/ }),
 /* 335 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addBalance = addBalance;
+
+var _fetch = __webpack_require__(124);
+
+var _config = __webpack_require__(125);
+
+function addBalance(val) {
+  return (0, _fetch.addData)(_config.ENDPOINTS.BALANCE, val);
+}
 
 /***/ })
 /******/ ]);

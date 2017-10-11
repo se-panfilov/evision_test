@@ -32,16 +32,16 @@ export async function getData (entityStr) {
   })
 }
 
-// export function addData (entityStr, value) {
-//   return fetch(`${URL}/${entityStr}/add`, {
-//     method: 'put',
-//     body: JSON.stringify(value)
-//   }).then(response => {
-//     if (!response.ok) return onError(response)
-//
-//     return response.json()
-//   })
-// }
+export function addData (entityStr, value) {
+  return fetch(`${URL}/${entityStr}/add`, {
+    method: 'put',
+    body: JSON.stringify(value)
+  }).then(response => {
+    if (!response.ok) return onError(response)
+
+    return response.json()
+  })
+}
 
 export function setErrorOutput (fn) {
   showErrorCustomFn = fn
