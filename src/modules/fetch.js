@@ -38,8 +38,6 @@ export function addData (entityStr, value) {
     body: JSON.stringify(value)
   }).then(response => {
     if (!response.ok) return onError(response)
-
-    return response.json()
   })
 }
 

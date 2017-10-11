@@ -3771,8 +3771,6 @@ function addData(entityStr, value) {
     body: JSON.stringify(value)
   }).then(function (response) {
     if (!response.ok) return onError(response);
-
-    return response.json();
   });
 }
 
@@ -9185,6 +9183,7 @@ __webpack_require__(335);
 (0, _elements.setBalanceFormAction)(function (e) {
   e.preventDefault();
   var val = (0, _elements.getBalanceFormData)();
+  val.date = new Date();
   (0, _balance.addBalance)(val);
 });
 
@@ -9394,8 +9393,8 @@ function getBalanceFormData() {
   var result = {
     amount: newBalanceAmountElem.value,
     description: newBalanceDescriptionIdElem.value,
-    from: null,
-    to: null
+    from: '',
+    to: ''
   };
 
   result[field] = newBalanceFromOrToIdElem.value;

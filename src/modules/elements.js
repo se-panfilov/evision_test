@@ -98,8 +98,8 @@ export function getBalanceFormData () {
   const result = {
     amount: newBalanceAmountElem.value,
     description: newBalanceDescriptionIdElem.value,
-    from: null,
-    to: null
+    from: '',
+    to: ''
   }
 
   result[field] = newBalanceFromOrToIdElem.value

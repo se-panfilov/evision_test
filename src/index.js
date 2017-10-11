@@ -29,5 +29,6 @@ getAccountData().then(data => {
 setBalanceFormAction(e => {
   e.preventDefault()
   const val = getBalanceFormData()
+  val.date = new Date()
   addBalance(val)
 })
