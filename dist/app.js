@@ -9185,9 +9185,6 @@ __webpack_require__(335);
 (0, _elements.setBalanceFormAction)(function (e) {
   e.preventDefault();
   var val = (0, _elements.getBalanceFormData)();
-  console.info('qqqqqqq');
-  console.info(val);
-  console.info('qqqqqqq');
   (0, _balance.addBalance)(val);
 });
 
@@ -9359,13 +9356,17 @@ function setDebitsAndCreditsList(data) {
 
   var itemsHtml = data.reduce(function (c, v) {
     var date = new Date(v.date);
+    var day = date.getDate();
+    if (day.toString().length === 1) day = '0' + day;
+    var month = date.getMonth() + 1;
+    if (month.toString().length === 1) month = '0' + month;
 
     c += '<tr class="' + debitAndCreditList + '__item">';
     c += createTD(v.from);
     c += createTD(v.to);
     c += createTD(v.amount);
     c += createTD(v.description);
-    c += createTD(date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    c += createTD(day + '-' + month + '-' + date.getFullYear());
     c += '</tr>';
 
     return c;
@@ -9428,8 +9429,8 @@ var _fetch = __webpack_require__(124);
 
 var _config = __webpack_require__(125);
 
-function addBalance(val) {
-  return (0, _fetch.addData)(_config.ENDPOINTS.BALANCE, val);
+function addBalance(obj) {
+  return (0, _fetch.addData)(_config.ENDPOINTS.BALANCE, obj);
 }
 
 /***/ })

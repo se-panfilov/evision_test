@@ -62,13 +62,17 @@ export function setDebitsAndCreditsList (data) {
 
   const itemsHtml = data.reduce((c, v) => {
     const date = new Date(v.date)
+    let day = date.getDate()
+    if (day.toString().length === 1) day = '0' + day
+    let month = date.getMonth() + 1
+    if (month.toString().length === 1) month = '0' + month
 
     c += `<tr class="${debitAndCreditList}__item">`
     c += createTD(v.from)
     c += createTD(v.to)
     c += createTD(v.amount)
     c += createTD(v.description)
-    c += createTD(`${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`)
+    c += createTD(`${day}-${month}-${date.getFullYear()}`)
     c += '</tr>'
 
     return c

@@ -29,8 +29,5 @@ getAccountData().then(data => {
 setBalanceFormAction(e => {
   e.preventDefault()
   const val = getBalanceFormData()
-  console.info('qqqqqqq')
-  console.info(val)
-  console.info('qqqqqqq')
   addBalance(val)
 })

@@ -1,6 +1,6 @@
 import {addData} from './fetch'
 import {ENDPOINTS} from '../config/config'
 
-export function addBalance (val) {
-  return addData(ENDPOINTS.BALANCE, val)
+export function addBalance (obj) {
+  return addData(ENDPOINTS.BALANCE, obj)
 }
