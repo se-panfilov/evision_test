@@ -15,7 +15,7 @@ import './styles.styl'
 
 setErrorOutput(blinkMessage)
 
-getAccountData().then(data => {
+function applyDataToDOM (data) {
   const account = data.account
 
   setBalanceVal(account.balance)
@@ -24,11 +24,13 @@ getAccountData().then(data => {
   setCurrencyVal(data.currency)
 
   setDebitsAndCreditsList(data.debitsAndCredits)
-})
+}
+
+getAccountData().then(applyDataToDOM)
 
 setBalanceFormAction(e => {
   e.preventDefault()
   const val = getBalanceFormData()
   val.date = new Date()
-  addBalance(val)
+  addBalance(val).then(() => getAccountData().then(applyDataToDOM))
 })

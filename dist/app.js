@@ -9169,7 +9169,7 @@ __webpack_require__(335);
 
 (0, _fetch.setErrorOutput)(_messages.blinkMessage);
 
-(0, _account.getAccountData)().then(function (data) {
+function applyDataToDOM(data) {
   var account = data.account;
 
   (0, _elements.setBalanceVal)(account.balance);
@@ -9178,13 +9178,17 @@ __webpack_require__(335);
   (0, _elements.setCurrencyVal)(data.currency);
 
   (0, _elements.setDebitsAndCreditsList)(data.debitsAndCredits);
-});
+}
+
+(0, _account.getAccountData)().then(applyDataToDOM);
 
 (0, _elements.setBalanceFormAction)(function (e) {
   e.preventDefault();
   var val = (0, _elements.getBalanceFormData)();
   val.date = new Date();
-  (0, _balance.addBalance)(val);
+  (0, _balance.addBalance)(val).then(function () {
+    return (0, _account.getAccountData)().then(applyDataToDOM);
+  });
 });
 
 /***/ }),
@@ -9269,7 +9273,7 @@ function blinkMessage(message, typeClass) {
 
   showMessage(message, typeClass);
 
-  // return setTimeout(clearMessage, timeout)
+  return setTimeout(clearMessage, timeout);
 }
 
 /***/ }),
@@ -9391,7 +9395,7 @@ function getBalanceFormData() {
   var field = newBalanceRecordTypeDebitElem.checked ? 'from' : 'to';
 
   var result = {
-    amount: newBalanceAmountElem.value,
+    amount: +newBalanceAmountElem.value,
     description: newBalanceDescriptionIdElem.value,
     from: '',
     to: ''

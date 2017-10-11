@@ -96,7 +96,7 @@ export function getBalanceFormData () {
   const field = (newBalanceRecordTypeDebitElem.checked) ? 'from' : 'to'
 
   const result = {
-    amount: newBalanceAmountElem.value,
+    amount: +newBalanceAmountElem.value,
     description: newBalanceDescriptionIdElem.value,
     from: '',
     to: ''
